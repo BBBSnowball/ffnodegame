@@ -43,7 +43,7 @@ class Scores
     #return without nameless routers, blacklisted and losers
     scores.delete_if{|e| BLACKLIST.any? { |pattern|
     	e['name'] == pattern or (pattern.is_a?(Regexp) and e['name'].to_s =~ pattern) } }
-    scores.delete_if{|e| e['name'].empty?}
+    scores.delete_if{|e| e['name'].nil? or e['name'].empty?}
     scores.delete_if{|e| e['points']<=0}
 
     #sort by score
